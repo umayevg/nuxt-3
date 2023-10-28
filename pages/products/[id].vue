@@ -1,11 +1,11 @@
 <script setup>
-import { dummyProducts } from "~/data/dummyData";
-import { useCartStore } from "~/store/postStore";
+import {dummyProducts} from "~/data/dummyData";
+import {useProductStore} from "~/store/productStore.js";
 
 
 const routeData = useRoute()
-const store = useCartStore()
-let { data: product, pending, error } = await useFetch('https://fakestoreapi.com/products/' + routeData.params.id)
+const store = useProductStore()
+let {data: product, pending, error} = await useFetch('https://fakestoreapi.com/products/' + routeData.params.id)
 
 if (error.value) {
   product = dummyProducts[0]
@@ -86,7 +86,6 @@ button {
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 
 
 .product-description {

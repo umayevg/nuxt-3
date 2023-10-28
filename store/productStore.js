@@ -1,7 +1,7 @@
-import { defineStore } from "pinia";
+import {defineStore} from "pinia";
 
-export const useCartStore = defineStore('cart', {
-    state: () => ({ products: [], totalPrice: 0 }),
+export const useProductStore = defineStore('cart', {
+    state: () => ({products: [], totalPrice: 0}),
     getters: {
         getCart: (state) => state
     },
@@ -12,10 +12,9 @@ export const useCartStore = defineStore('cart', {
                 findProduct.count++
                 this.totalPrice = this.totalPrice + product.price
             } else {
-                this.products.push({ ...product, count: 1 })
+                this.products.push({...product, count: 1})
                 this.totalPrice = this.totalPrice + product.price
             }
-
 
 
             console.log(this.products)

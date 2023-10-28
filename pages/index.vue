@@ -1,10 +1,10 @@
 <script setup>
 
-import { dummyProducts } from './../data/dummyData.js'
-import { useCartStore } from "~/store/postStore.js";
+import {dummyProducts} from './../data/dummyData.js'
+import {useProductStore} from "~/store/productStore.js";
 
-let { data: products, pending, status, refresh, execute, error } = useFetch('https://fakestoreapi.com/products')
-const store = useCartStore()
+let {data: products, pending, status, refresh, execute, error} = useFetch('https://fakestoreapi.com/products')
+const store = useProductStore()
 
 
 if (error.value) {
@@ -22,8 +22,11 @@ if (error.value) {
         <img v-if="error" class="product-image" src="../images/stairs.jpg" alt="Image name">
         <img v-else class="product-image" :src="product.image" :alt="product.title">
         <div class="product-details">
-          <div :title="product.title" class="product-title">{{ product.title.length > 20 ? product.title.substring(0, 20) +
-            '...' : product.title }}</div>
+          <div :title="product.title" class="product-title">{{
+              product.title.length > 20 ? product.title.substring(0, 20) +
+                  '...' : product.title
+            }}
+          </div>
           <div class="product-price">${{ product.price.toFixed(2) }}</div>
           <button class="btn" @click.prevent.stop="store.addToCart(product)">add</button>
         </div>
@@ -61,6 +64,7 @@ body {
   text-align: center;
   transition: transform 0.3s ease;
 }
+
 .product-card a {
   text-decoration: none;
 }
