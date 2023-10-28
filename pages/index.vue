@@ -62,7 +62,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .product-card a {
@@ -71,6 +71,7 @@ body {
 
 .product-card:hover {
   transform: translateY(-5px);
+  border: 1px solid #825de6;
 }
 
 .product-image {
