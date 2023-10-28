@@ -1,9 +1,9 @@
 <script setup>
 
-import {dummyProducts} from './../data/dummyData.js'
-import {useProductStore} from "~/store/productStore.js";
+import { dummyProducts } from './../data/dummyData.js'
+import { useProductStore } from "~/store/productStore.js";
 
-let {data: products, pending, status, refresh, execute, error} = useFetch('https://fakestoreapi.com/products')
+let { data: products, pending, status, refresh, execute, error } = useFetch('https://fakestoreapi.com/products')
 const store = useProductStore()
 
 
@@ -23,9 +23,9 @@ if (error.value) {
         <img v-else class="product-image" :src="product.image" :alt="product.title">
         <div class="product-details">
           <div :title="product.title" class="product-title">{{
-              product.title.length > 20 ? product.title.substring(0, 20) +
-                  '...' : product.title
-            }}
+            product.title.length > 20 ? product.title.substring(0, 20) +
+          '...' : product.title
+          }}
           </div>
           <div class="product-price">${{ product.price.toFixed(2) }}</div>
           <button class="btn" @click.prevent.stop="store.addToCart(product)">add</button>
@@ -101,8 +101,8 @@ body {
 }
 
 .btn {
-  align-self: center;
-  width: 200px;
+  max-width: 200px;
+  width: 100%;
   margin-top: 10px;
   padding: 10px;
   font-size: 1rem;
@@ -120,9 +120,18 @@ body {
 
 @media (max-width: 910px) {
   .product-card {
+    margin-left: 0;
+    margin-right: 0;
     width: calc(50% - 40px);
     /* 40px is the total horizontal margin and border width combined */
   }
-}
 
+  .product-title {
+    font-size: 14px;
+  }
+
+  body {
+    padding: 0;
+  }
+}
 </style>

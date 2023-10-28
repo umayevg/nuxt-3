@@ -25,18 +25,18 @@ onClickOutside(target, () => emit('modal-close'))
                             Cart is empty
                         </div>
                         <div v-else>
-                            <table style="width: 100%">
-                                <tr v-for="item in storeData.products">
-                                    <td>{{ item.count }}x {{ item.title }}</td>
-                                    <td>${{ item.price }}</td>
-                                    <td>
+                            <div v-for="item in storeData.products">
+                                <h3 class="product-title">{{ item.title }}</h3>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>{{ item.count }}x ${{ item.price }}</span>
+                                    <div>
                                         <button @click="storeData.removeFromCart(item.id)">-</button><button
                                             @click="storeData.addToCart(item)">+</button>
-                                    </td>
-                                </tr>
-                            </table>
-                          <hr>
-                          <p>Total price: <strong>${{ storeData.totalPrice.toFixed(2)}}</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <p>Total price: <strong>${{ storeData.totalPrice.toFixed(2) }}</strong></p>
                         </div>
                     </slot>
                 </div>
@@ -47,10 +47,11 @@ onClickOutside(target, () => emit('modal-close'))
 
 <style scoped>
 button {
-  margin-right: 5px;
-  padding: 2px 10px;
-  cursor: pointer;
+    margin-right: 5px;
+    padding: 2px 10px;
+    cursor: pointer;
 }
+
 .modal-mask {
     position: fixed;
     z-index: 9998;
@@ -61,10 +62,19 @@ button {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.modal-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+
 .modal-container {
+    max-height: 400px;
+    overflow: scroll;
     max-width: 900px;
+    margin-top: 10%;
     width: 100%;
-    margin: 150px auto;
     padding: 20px 30px;
     background-color: #fff;
     border-radius: 2px;
